@@ -6,6 +6,7 @@ from alarmdecoder.devices import SerialDevice
 SERIAL_DEVICE = '/dev/ttyUSB0'
 BAUDRATE = 115200
 
+
 def main():
     """
     Example application that opens a serial device and prints messages to the terminal.
@@ -26,11 +27,13 @@ def main():
     except Exception as ex:
         print('Exception:', ex)
 
+
 def handle_message(sender, message):
     """
     Handles message events from the AlarmDecoder.
     """
     print(sender, message.raw)
+
 
 if __name__ == '__main__':
     main()

@@ -12,6 +12,7 @@ devices.
 from . import BaseMessage
 from ..util import InvalidMessageError
 
+
 class RFMessage(BaseMessage):
     """
     Represents a message from an RF receiver.
@@ -73,10 +74,10 @@ class RFMessage(BaseMessage):
         Dictionary representation.
         """
         return dict(
-            time                  = self.timestamp,
-            serial_number         = self.serial_number,
-            value                 = self.value,
-            battery               = self.battery,
-            supervision           = self.supervision,
+            time=self.timestamp,
+            serial_number=self.serial_number,
+            value=self.value,
+            battery=self.battery,
+            supervision=self.supervision,
             **kwargs
         )

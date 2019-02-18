@@ -7,7 +7,6 @@ Provides utility classes for the `AlarmDecoder`_ (AD2) devices.
 """
 
 import time
-import threading
 import select
 import sys
 import alarmdecoder
@@ -80,6 +79,7 @@ def bytes_available(device):
 
     return bytes_avail
 
+
 def bytes_hack(buf):
     """
     Hacky workaround for old installs of the library on systems without python-future that were
@@ -92,6 +92,7 @@ def bytes_hack(buf):
         ub = bytes(buf)
 
     return ub
+
 
 def read_firmware_file(file_path):
     """
@@ -111,6 +112,7 @@ def read_firmware_file(file_path):
                 data_queue.append(line + "\r")
 
     return data_queue
+
 
 class Firmware(object):
     """
@@ -207,7 +209,7 @@ class Firmware(object):
                         if isinstance(c, int):
                             c = chr(c)
 
-                        if c == '\xff' or c == '\r':    # HACK: odd case for our mystery \xff byte.
+                        if c == '\xff' or c == '\r':  # HACK: odd case for our mystery \xff byte.
                             # Boot started, start looking for the !boot message
                             if data_read.startswith("!sn"):
                                 stage = progress_stage(Firmware.STAGE_BOOT)

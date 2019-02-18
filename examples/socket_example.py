@@ -6,6 +6,7 @@ from alarmdecoder.devices import SocketDevice
 HOSTNAME = 'localhost'
 PORT = 10000
 
+
 def main():
     """
     Example application that opens a device that has been exposed to the network
@@ -24,11 +25,13 @@ def main():
     except Exception as ex:
         print('Exception:', ex)
 
+
 def handle_message(sender, message):
     """
     Handles message events from the AlarmDecoder.
     """
     print(sender, message.raw)
+
 
 if __name__ == '__main__':
     main()

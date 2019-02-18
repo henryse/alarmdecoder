@@ -31,6 +31,7 @@ AlarmDecoder can be installed through ``pip``::
 
     pip install alarmdecoder
 
+
 or from source::
 
     python setup.py install
@@ -95,3 +96,4 @@ more.::
 
     if __name__ == '__main__':
         main()
+

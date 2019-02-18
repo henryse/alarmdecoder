@@ -24,7 +24,7 @@ class Zone(object):
     """Status indicating that the zone is cleared."""
     FAULT = 1
     """Status indicating that the zone is faulted."""
-    CHECK = 2   # Wire fault
+    CHECK = 2  # Wire fault
     """Status indicating that there is a wiring issue with the zone."""
 
     STATUS = {CLEAR: 'CLEAR', FAULT: 'FAULT', CHECK: 'CHECK'}
@@ -76,8 +76,10 @@ class Zonetracker(object):
     Handles tracking of zones and their statuses.
     """
 
-    on_fault = event.Event("This event is called when the device detects a zone fault.\n\n**Callback definition:** *def callback(device, zone)*")
-    on_restore = event.Event("This event is called when the device detects that a fault is restored.\n\n**Callback definition:** *def callback(device, zone)*")
+    on_fault = event.Event(
+        "This event is called when the device detects a zone fault.\n\n**Callback definition:** *def callback(device, zone)*")
+    on_restore = event.Event(
+        "This event is called when the device detects that a fault is restored.\n\n**Callback definition:** *def callback(device, zone)*")
 
     EXPIRE = 30
     """Zone expiration timeout."""
@@ -177,7 +179,8 @@ class Zonetracker(object):
                 self._last_zone_fault = 0
 
             # Process fault
-            elif self.alarmdecoder_object.mode != DSC and (message.check_zone or message.text.startswith("FAULT") or message.text.startswith("ALARM")):
+            elif self.alarmdecoder_object.mode != DSC and (
+                    message.check_zone or message.text.startswith("FAULT") or message.text.startswith("ALARM")):
                 zone = message.parse_numeric_code()
 
                 # NOTE: Odd case for ECP failures.  Apparently they report as
@@ -230,7 +233,7 @@ class Zonetracker(object):
             # TODO: This is going to need to be reworked to support the larger
             #       panels without fixed addressing on the expanders.
 
-            idx = address - 7   # Expanders start at address 7.
+            idx = address - 7  # Expanders start at address 7.
             zone = address + channel + (idx * 7) + 1
 
         elif panel_type == DSC:

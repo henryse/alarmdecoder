@@ -4,6 +4,7 @@ from alarmdecoder.devices import USBDevice
 
 __devices = {}
 
+
 def main():
     """
     Example application that shows how to handle attach/detach events generated
@@ -31,6 +32,7 @@ def main():
 
         USBDevice.stop_detection()
 
+
 def create_device(device_args):
     """
     Creates an AlarmDecoder from the specified USB device arguments.
@@ -44,11 +46,13 @@ def create_device(device_args):
 
     return device
 
+
 def handle_message(sender, message):
     """
     Handles message events from the AlarmDecoder.
     """
     print(sender, message.raw)
+
 
 def handle_attached(sender, device):
     """
@@ -59,6 +63,7 @@ def handle_attached(sender, device):
     __devices[dev.id] = dev
 
     print('attached', dev.id)
+
 
 def handle_detached(sender, device):
     """
@@ -73,6 +78,7 @@ def handle_detached(sender, device):
         del __devices[sernum]
 
     print('detached', sernum)
+
 
 if __name__ == '__main__':
     main()

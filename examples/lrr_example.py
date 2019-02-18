@@ -5,6 +5,7 @@ from alarmdecoder.devices import SerialDevice
 SERIAL_DEVICE = '/dev/ttyUSB0'
 BAUDRATE = 115200
 
+
 def main():
     """
     Example application that prints messages from the panel to the terminal.
@@ -22,11 +23,13 @@ def main():
     except Exception as ex:
         print('Exception:', ex)
 
+
 def handle_lrr_message(sender, message):
     """
     Handles message events from the AlarmDecoder.
     """
     print(sender, message.partition, message.event_type, message.event_data)
+
 
 if __name__ == '__main__':
     main()

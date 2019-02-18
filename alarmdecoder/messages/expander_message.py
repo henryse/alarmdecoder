@@ -12,6 +12,7 @@ devices.
 from . import BaseMessage
 from ..util import InvalidMessageError
 
+
 class ExpanderMessage(BaseMessage):
     """
     Represents a message from a zone or relay expansion module.
@@ -75,9 +76,9 @@ class ExpanderMessage(BaseMessage):
         Dictionary representation.
         """
         return dict(
-            time                  = self.timestamp,
-            address               = self.address,
-            channel               = self.channel,
-            value                 = self.value,
+            time=self.timestamp,
+            address=self.address,
+            channel=self.channel,
+            value=self.value,
             **kwargs
         )

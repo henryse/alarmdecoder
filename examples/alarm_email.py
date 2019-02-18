@@ -7,14 +7,16 @@ from alarmdecoder.devices import SerialDevice
 # Configuration values
 SUBJECT = "AlarmDecoder - ALARM"
 FROM_ADDRESS = "root@localhost"
-TO_ADDRESS = "root@localhost"       # NOTE: Sending an SMS is as easy as looking
-                                    # up the email address format for your provider.
+# NOTE: Sending an SMS is as easy as looking
+# up the email address format for your provider.
+TO_ADDRESS = "root@localhost"
 SMTP_SERVER = "localhost"
 SMTP_USERNAME = None
 SMTP_PASSWORD = None
 
 SERIAL_DEVICE = '/dev/ttyUSB0'
 BAUDRATE = 115200
+
 
 def main():
     """
@@ -33,6 +35,7 @@ def main():
 
     except Exception as ex:
         print('Exception:', ex)
+
 
 def handle_alarm(sender, **kwargs):
     """
@@ -58,6 +61,7 @@ def handle_alarm(sender, **kwargs):
     s.quit()
 
     print('sent alarm email:', text)
+
 
 if __name__ == '__main__':
     main()

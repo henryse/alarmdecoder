@@ -4,6 +4,7 @@ Constants and utility functions used for LRR event handling.
 .. moduleauthor:: Scott Petersen <scott@nutech.com>
 """
 
+
 def get_event_description(event_type, event_code):
     """
     Retrieves the human-readable description of an LRR event.
@@ -22,6 +23,7 @@ def get_event_description(event_type, event_code):
         description = lookup_map.get(event_code, description)
 
     return description
+
 
 def get_event_source(prefix):
     """
@@ -73,7 +75,7 @@ class LRR_CID_EVENT:
     MEDICAL_PENDANT = 0x101
     MEDICAL_FAIL_TO_REPORT = 0x102
     # 103-108: ?
-    TAMPER_ZONE = 0x109     # NOTE: Where did we find this?
+    TAMPER_ZONE = 0x109  # NOTE: Where did we find this?
     FIRE = 0x110
     FIRE_SMOKE = 0x111
     FIRE_COMBUSTION = 0x112
@@ -272,8 +274,9 @@ class LRR_CID_EVENT:
     STATUS_PANIC_ALARM_RESET = 0x465
     ACCESS_SERVICE_ONOFF_PREMISES = 0x466
     # 467-469: ?
-    OPENCLOSE_PARTIAL_CLOSING = 0x470   # HACK: This is from our DSC firmware implementation, 
-                                        #       and is named far too closely to 0x480.
+    OPENCLOSE_PARTIAL_CLOSING = 0x470
+    # HACK: This is from our DSC firmware implementation,
+    #       and is named far too closely to 0x480.
     # 471-479: ?
     OPENCLOSE_PARTIAL_CLOSE = 0x480
     # 481-500: ?
@@ -589,7 +592,6 @@ LRR_CID_MAP = {
     LRR_CID_EVENT.OPENCLOSE_KEYSWITCH_ARMED_STAY: 'Open/Close: Keyswitch, Armed Stay',
     LRR_CID_EVENT.OPENCLOSE_EXCEPTION: 'Open/Close: Armed with Trouble Override',
     LRR_CID_EVENT.OPENCLOSE_EARLY: 'Open/Close: Early',
-    LRR_CID_EVENT.OPENCLOSE_LATE: 'Open/Close: Late',
     LRR_CID_EVENT.TROUBLE_FAILED_TO_OPEN: 'Trouble: Failed To Open',
     LRR_CID_EVENT.TROUBLE_FAILED_TO_CLOSE: 'Trouble: Failed To Close',
     LRR_CID_EVENT.TROUBLE_AUTO_ARM_FAILED: 'Trouble: Auto Arm Failed',
@@ -741,7 +743,7 @@ LRR_FIRE_EVENTS = [
     LRR_CID_EVENT.FIRE_PULL_STATION,
     LRR_CID_EVENT.FIRE_DUCT,
     LRR_CID_EVENT.FIRE_FLAME,
-    LRR_CID_EVENT.OPENCLOSE_CANCEL_BY_USER              # HACK: Don't really like having this here
+    LRR_CID_EVENT.OPENCLOSE_CANCEL_BY_USER  # HACK: Don't really like having this here
 ]
 
 # LRR events that should be considered Alarm events.
@@ -765,7 +767,7 @@ LRR_ALARM_EVENTS = [
     LRR_CID_EVENT.ALARM_LOW_TEMP,
     LRR_CID_EVENT.ALARM_LOSS_OF_AIR_FLOW,
     LRR_CID_EVENT.ALARM_CARBON_MONOXIDE,
-    LRR_CID_EVENT.OPENCLOSE_CANCEL_BY_USER              # HACK: Don't really like having this here
+    LRR_CID_EVENT.OPENCLOSE_CANCEL_BY_USER  # HACK: Don't really like having this here
 ]
 
 # LRR events that should be considered Power events.
@@ -796,7 +798,7 @@ LRR_PANIC_EVENTS = [
     LRR_CID_EVENT.PANIC_AUDIBLE,
     LRR_CID_EVENT.PANIC_DURESS_ACCESS_GRANTED,
     LRR_CID_EVENT.PANIC_DURESS_EGRESS_GRANTED,
-    LRR_CID_EVENT.OPENCLOSE_CANCEL_BY_USER              # HACK: Don't really like having this here
+    LRR_CID_EVENT.OPENCLOSE_CANCEL_BY_USER  # HACK: Don't really like having this here
 ]
 
 # LRR events that should be considered Arm events.
@@ -808,7 +810,7 @@ LRR_ARM_EVENTS = [
     LRR_CID_EVENT.OPENCLOSE_REMOTE_ARMDISARM,
     LRR_CID_EVENT.OPENCLOSE_QUICK_ARM,
     LRR_CID_EVENT.OPENCLOSE_KEYSWITCH,
-    LRR_CID_EVENT.OPENCLOSE_ARMED_STAY,                 # HACK: Not sure if I like having these in here.
+    LRR_CID_EVENT.OPENCLOSE_ARMED_STAY,  # HACK: Not sure if I like having these in here.
     LRR_CID_EVENT.OPENCLOSE_KEYSWITCH_ARMED_STAY
 ]
 

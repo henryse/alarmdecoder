@@ -9,6 +9,7 @@ WAIT_TIME = 10
 SERIAL_DEVICE = '/dev/ttyUSB0'
 BAUDRATE = 115200
 
+
 def main():
     """
     Example application that periodically faults a virtual zone and then
@@ -50,6 +51,7 @@ def main():
     except Exception as ex:
         print('Exception:', ex)
 
+
 def handle_zone_fault(sender, zone):
     """
     Handles zone fault messages.
@@ -59,11 +61,13 @@ def handle_zone_fault(sender, zone):
     # Restore the zone
     sender.clear_zone(zone)
 
+
 def handle_zone_restore(sender, zone):
     """
     Handles zone restore messages.
     """
     print('zone cleared', zone)
+
 
 if __name__ == '__main__':
     main()

@@ -7,6 +7,7 @@ RF_DEVICE_SERIAL_NUMBER = '0252254'
 SERIAL_DEVICE = '/dev/ttyUSB0'
 BAUDRATE = 115200
 
+
 def main():
     """
     Example application that watches for an event from a specific RF device.
@@ -32,6 +33,8 @@ def main():
     except Exception as ex:
         print('Exception:', ex)
 
+
+# noinspection PyUnusedLocal
 def handle_rfx(sender, message):
     """
     Handles RF message events from the AlarmDecoder.
@@ -39,6 +42,7 @@ def handle_rfx(sender, message):
     # Check for our target serial number and loop
     if message.serial_number == RF_DEVICE_SERIAL_NUMBER and message.loop[0] == True:
         print(message.serial_number, 'triggered loop #1')
+
 
 if __name__ == '__main__':
     main()

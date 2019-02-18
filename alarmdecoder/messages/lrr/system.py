@@ -6,7 +6,7 @@ Primary system for handling LRR events.
 
 from .events import LRR_EVENT_TYPE, LRR_EVENT_STATUS, LRR_CID_EVENT
 from .events import LRR_FIRE_EVENTS, LRR_POWER_EVENTS, LRR_BYPASS_EVENTS, LRR_BATTERY_EVENTS, \
-                    LRR_PANIC_EVENTS, LRR_ARM_EVENTS, LRR_STAY_EVENTS, LRR_ALARM_EVENTS
+    LRR_PANIC_EVENTS, LRR_ARM_EVENTS, LRR_STAY_EVENTS, LRR_ALARM_EVENTS
 
 
 class LRRSystem(object):
@@ -34,10 +34,10 @@ class LRRSystem(object):
         # Firmware version < 2.2a.8.6
         if message.version == 1:
             if message.event_type == 'ALARM_PANIC':
-                self._alarmdecoder._update_panic_status(True)
-                
+                self._alarmdecoder.update_panic_status(True)
+
             elif message.event_type == 'CANCEL':
-                self._alarmdecoder._update_panic_status(False)
+                self._alarmdecoder.update_panic_status(False)
 
         # Firmware version >= 2.2a.8.6
         elif message.version == 2:
@@ -70,8 +70,8 @@ class LRRSystem(object):
             if message.event_code == LRR_CID_EVENT.OPENCLOSE_CANCEL_BY_USER:
                 status = False
 
-            self._alarmdecoder._update_fire_status(status=status)
-            
+            self._alarmdecoder.update_fire_status(status=status)
+
         if message.event_code in LRR_ALARM_EVENTS:
             kwargs = {}
             field_name = 'zone'
@@ -79,34 +79,33 @@ class LRRSystem(object):
                 field_name = 'user'
 
             kwargs[field_name] = int(message.event_data)
-            self._alarmdecoder._update_alarm_status(status=status, **kwargs)
+            self._alarmdecoder.update_alarm_status(status=status, **kwargs)
 
         if message.event_code in LRR_POWER_EVENTS:
-            self._alarmdecoder._update_power_status(status=status)
+            self._alarmdecoder.update_power_status(status=status)
 
         if message.event_code in LRR_BYPASS_EVENTS:
-            self._alarmdecoder._update_zone_bypass_status(status=status, zone=int(message.event_data))
+            self._alarmdecoder.update_zone_bypass_status(status=status, zone=int(message.event_data))
 
         if message.event_code in LRR_BATTERY_EVENTS:
-            self._alarmdecoder._update_battery_status(status=status)
+            self._alarmdecoder.update_battery_status(status=status)
 
         if message.event_code in LRR_PANIC_EVENTS:
             if message.event_code == LRR_CID_EVENT.OPENCLOSE_CANCEL_BY_USER:
                 status = False
 
-            self._alarmdecoder._update_panic_status(status=status)
+            self._alarmdecoder.update_panic_status(status=status)
 
         if message.event_code in LRR_ARM_EVENTS:
             # NOTE: status on OPENCLOSE messages is backwards.
-            status_stay = (message.event_status == LRR_EVENT_STATUS.RESTORE \
-                            and message.event_code in LRR_STAY_EVENTS)
+            status_stay = (message.event_status == LRR_EVENT_STATUS.RESTORE and message.event_code in LRR_STAY_EVENTS)
 
             if status_stay:
                 status = False
             else:
                 status = not status
 
-            self._alarmdecoder._update_armed_status(status=status, status_stay=status_stay)
+            self._alarmdecoder.update_armed_status(status=status, status_stay=status_stay)
 
     def _handle_dsc_message(self, message):
         """

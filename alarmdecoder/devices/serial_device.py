@@ -208,6 +208,7 @@ class SerialDevice(Device):
         def timeout_event():
             """Handles read timeout event"""
             timeout_event.reading = False
+
         timeout_event.reading = True
 
         if purge_buffer:

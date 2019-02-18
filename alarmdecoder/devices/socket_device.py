@@ -31,6 +31,7 @@ except ImportError:
         class SysCallError(BaseException):
             pass
 
+
     have_openssl = False
 
 
@@ -307,6 +308,7 @@ class SocketDevice(Device):
         def timeout_event():
             """Handles read timeout event"""
             timeout_event.reading = False
+
         timeout_event.reading = True
 
         if purge_buffer:
@@ -406,7 +408,7 @@ class SocketDevice(Device):
                 ctx.load_verify_locations(self.ssl_ca, None)
 
             verify_method = SSL.VERIFY_PEER
-            if (self._ssl_allow_self_signed):
+            if self._ssl_allow_self_signed:
                 verify_method = SSL.VERIFY_NONE
 
             ctx.set_verify(verify_method, self._verify_ssl_callback)

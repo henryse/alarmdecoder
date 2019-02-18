@@ -10,7 +10,7 @@ devices.
 """
 
 from . import BaseMessage
-from ..util import InvalidMessageError
+
 
 class AUIMessage(BaseMessage):
     """
@@ -42,6 +42,6 @@ class AUIMessage(BaseMessage):
         Dictionary representation.
         """
         return dict(
-            value = self.value,
+            value=self.value,
             **kwargs
         )

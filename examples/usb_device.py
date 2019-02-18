@@ -2,6 +2,7 @@ import time
 from alarmdecoder import AlarmDecoder
 from alarmdecoder.devices import USBDevice
 
+
 def main():
     """
     Example application that prints messages from the panel to the terminal.
@@ -19,11 +20,13 @@ def main():
     except Exception as ex:
         print('Exception:', ex)
 
+
 def handle_message(sender, message):
     """
     Handles message events from the AlarmDecoder.
     """
     print(sender, message.raw)
+
 
 if __name__ == '__main__':
     main()

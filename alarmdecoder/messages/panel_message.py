@@ -15,6 +15,7 @@ from . import BaseMessage
 from ..util import InvalidMessageError
 from ..panels import PANEL_TYPES, ADEMCO, DSC
 
+
 class Message(BaseMessage):
     """
     Represents a message from the alarm panel.
@@ -69,7 +70,6 @@ class Message(BaseMessage):
     panel_data = None
     """The panel data field associated with this message."""
 
-
     _regex = re.compile('^(!KPM:){0,1}(\[[a-fA-F0-9\-]+\]),([a-fA-F0-9]+),(\[[a-fA-F0-9]+\]),(".+")$')
 
     def __init__(self, data=None):
@@ -123,7 +123,7 @@ class Message(BaseMessage):
             self.panel_type = PANEL_TYPES[self.bitfield[18]]
         # pos 20-21 - Unused.
         self.text = alpha.strip('"')
-        self.mask = int(self.panel_data[3:3+8], 16)
+        self.mask = int(self.panel_data[3:3 + 8], 16)
 
         if self.panel_type in (ADEMCO, DSC):
             if int(self.panel_data[19:21], 16) & 0x01 > 0:
@@ -164,28 +164,28 @@ class Message(BaseMessage):
         Dictionary representation.
         """
         return dict(
-            time                  = self.timestamp,
-            bitfield              = self.bitfield,
-            numeric_code          = self.numeric_code,
-            panel_data            = self.panel_data,
-            mask                  = self.mask,
-            ready                 = self.ready,
-            armed_away            = self.armed_away,
-            armed_home            = self.armed_home,
-            backlight_on          = self.backlight_on,
-            programming_mode      = self.programming_mode,
-            beeps                 = self.beeps,
-            zone_bypassed         = self.zone_bypassed,
-            ac_power              = self.ac_power,
-            chime_on              = self.chime_on,
-            alarm_event_occurred  = self.alarm_event_occurred,
-            alarm_sounding        = self.alarm_sounding,
-            battery_low           = self.battery_low,
-            entry_delay_off       = self.entry_delay_off,
-            fire_alarm            = self.fire_alarm,
-            check_zone            = self.check_zone,
-            perimeter_only        = self.perimeter_only,
-            text                  = self.text,
-            cursor_location       = self.cursor_location,
+            time=self.timestamp,
+            bitfield=self.bitfield,
+            numeric_code=self.numeric_code,
+            panel_data=self.panel_data,
+            mask=self.mask,
+            ready=self.ready,
+            armed_away=self.armed_away,
+            armed_home=self.armed_home,
+            backlight_on=self.backlight_on,
+            programming_mode=self.programming_mode,
+            beeps=self.beeps,
+            zone_bypassed=self.zone_bypassed,
+            ac_power=self.ac_power,
+            chime_on=self.chime_on,
+            alarm_event_occurred=self.alarm_event_occurred,
+            alarm_sounding=self.alarm_sounding,
+            battery_low=self.battery_low,
+            entry_delay_off=self.entry_delay_off,
+            fire_alarm=self.fire_alarm,
+            check_zone=self.check_zone,
+            perimeter_only=self.perimeter_only,
+            text=self.text,
+            cursor_location=self.cursor_location,
             **kwargs
         )

@@ -80,10 +80,10 @@ class LRRMessage(BaseMessage):
                 self.version = 2
 
                 event_type_data = self.event_type.split('_')
-                self.event_prefix = event_type_data[0]                      # Ex: CID
-                self.event_source = get_event_source(self.event_prefix)     # Ex: LRR_EVENT_TYPE.CID
-                self.event_status = int(event_type_data[1][0])              # Ex: 1 or 3
-                self.event_code = int(event_type_data[1][1:], 16)           # Ex: 0x100 = Medical
+                self.event_prefix = event_type_data[0]  # Ex: CID
+                self.event_source = get_event_source(self.event_prefix)  # Ex: LRR_EVENT_TYPE.CID
+                self.event_status = int(event_type_data[1][0])  # Ex: 1 or 3
+                self.event_code = int(event_type_data[1][1:], 16)  # Ex: 0x100 = Medical
 
                 # replace last 2 digits of event_code with report_code, if applicable.
                 if not self.skip_report_override and self.report_code not in ['00', 'ff']:
@@ -93,21 +93,20 @@ class LRRMessage(BaseMessage):
         except ValueError:
             raise InvalidMessageError('Received invalid message: {0}'.format(data))
 
-
     def dict(self, **kwargs):
         """
         Dictionary representation
         """
         return dict(
-            time                  = self.timestamp,
-            event_data            = self.event_data,
-            event_type            = self.event_type,
-            partition             = self.partition,
-            report_code           = self.report_code,
-            event_prefix          = self.event_prefix,
-            event_source          = self.event_source,
-            event_status          = self.event_status,
-            event_code            = hex(self.event_code),
-            event_description     = self.event_description,
+            time=self.timestamp,
+            event_data=self.event_data,
+            event_type=self.event_type,
+            partition=self.partition,
+            report_code=self.report_code,
+            event_prefix=self.event_prefix,
+            event_source=self.event_source,
+            event_status=self.event_status,
+            event_code=hex(self.event_code),
+            event_description=self.event_description,
             **kwargs
         )

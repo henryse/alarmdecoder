@@ -5,6 +5,7 @@ try:
 except ImportError:
     from repr import repr
 
+
 class BaseMessage(object):
     """
     Base class for messages.

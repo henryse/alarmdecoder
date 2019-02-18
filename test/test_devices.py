@@ -329,7 +329,8 @@ if have_pyftdi:
             self.assertFalse(self._detached)
 
             # this is ugly, but it works.
-            with patch.object(USBDevice, 'find_all', return_value=[(0, 0, 'AD2-1', 1, 'AD2'), (0, 0, 'AD2-2', 1, 'AD2')]):
+            with patch.object(USBDevice, 'find_all',
+                              return_value=[(0, 0, 'AD2-1', 1, 'AD2'), (0, 0, 'AD2-2', 1, 'AD2')]):
                 USBDevice.start_detection(on_attached=self.attached_event, on_detached=self.detached_event)
 
                 with patch.object(USBDevice, 'find_all', return_value=[(0, 0, 'AD2-2', 1, 'AD2')]):

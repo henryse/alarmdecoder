@@ -27,6 +27,7 @@ except ImportError:
         class SysCallError(BaseException):
             pass
 
+
     have_openssl = False
 
 
@@ -36,10 +37,14 @@ class Device(object):
     """
 
     # Generic device events
-    on_open = event.Event("This event is called when the device has been opened.\n\n**Callback definition:** *def callback(device)*")
-    on_close = event.Event("This event is called when the device has been closed.\n\n**Callback definition:** def callback(device)*")
-    on_read = event.Event("This event is called when a line has been read from the device.\n\n**Callback definition:** def callback(device, data)*")
-    on_write = event.Event("This event is called when data has been written to the device.\n\n**Callback definition:** def callback(device, data)*")
+    on_open = event.Event(
+        "This event is called when the device has been opened.\n\n**Callback definition:** *def callback(device)*")
+    on_close = event.Event(
+        "This event is called when the device has been closed.\n\n**Callback definition:** def callback(device)*")
+    on_read = event.Event(
+        "This event is called when a line has been read from the device.\n\n**Callback definition:** def callback(device, data)*")
+    on_write = event.Event(
+        "This event is called when data has been written to the device.\n\n**Callback definition:** def callback(device, data)*")
 
     def __init__(self):
         """

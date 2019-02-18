@@ -51,7 +51,6 @@ class USBDevice(Device):
     FTDI_PRODUCT_ID = DEFAULT_PRODUCT_ID
     """DEPRECATED: Product ID used to recognize `AD2USB`_ devices."""
 
-
     BAUDRATE = 115200
     """Default baudrate for `AD2USB`_ devices."""
 
@@ -289,7 +288,9 @@ class USBDevice(Device):
             raise NoDeviceError('Error opening device: {0}'.format(str(err)), err)
 
         except KeyError as err:
-            raise NoDeviceError('Unsupported device. ({0:04x}:{1:04x})  You probably need a newer version of pyftdi.'.format(err[0][0], err[0][1]))
+            raise NoDeviceError(
+                'Unsupported device. ({0:04x}:{1:04x})  You probably need a newer version of pyftdi.'.format(err[0][0],
+                                                                                                             err[0][1]))
 
         else:
             self._running = True
@@ -372,6 +373,7 @@ class USBDevice(Device):
         def timeout_event():
             """Handles read timeout event"""
             timeout_event.reading = False
+
         timeout_event.reading = True
 
         if purge_buffer:
@@ -436,8 +438,10 @@ class USBDevice(Device):
         """
         Thread that handles detection of added/removed devices.
         """
-        on_attached = event.Event("This event is called when an `AD2USB`_ device has been detected.\n\n**Callback definition:** def callback(thread, device*")
-        on_detached = event.Event("This event is called when an `AD2USB`_ device has been removed.\n\n**Callback definition:** def callback(thread, device*")
+        on_attached = event.Event(
+            "This event is called when an `AD2USB`_ device has been detected.\n\n**Callback definition:** def callback(thread, device*")
+        on_detached = event.Event(
+            "This event is called when an `AD2USB`_ device has been removed.\n\n**Callback definition:** def callback(thread, device*")
 
         def __init__(self, on_attached=None, on_detached=None):
             """
