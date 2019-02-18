@@ -1,9 +1,5 @@
 import datetime
-
-try:
-    from reprlib import repr
-except ImportError:
-    from repr import repr
+from reprlib import repr
 
 
 class BaseMessage(object):

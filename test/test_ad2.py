@@ -3,18 +3,16 @@ import time
 from builtins import bytes
 
 from unittest import TestCase
-from mock import Mock, MagicMock, patch
+from unittest.mock import Mock, patch
 
 from alarmdecoder.decoder import AlarmDecoder
 from alarmdecoder.devices import USBDevice
 from alarmdecoder.messages import Message, RFMessage, LRRMessage, ExpanderMessage
 from alarmdecoder.event.event import Event, EventHandler
-from alarmdecoder.zonetracking import Zonetracker
-from alarmdecoder.panels import ADEMCO, DSC
-from alarmdecoder.messages.lrr import LRR_EVENT_TYPE, LRR_EVENT_STATUS
-from alarmdecoder.states import FireState
+from alarmdecoder.panels import ADEMCO
 
 
+# noinspection PyUnusedLocal
 class TestAlarmDecoder(TestCase):
     def setUp(self):
         self._panicked = False
@@ -73,7 +71,7 @@ class TestAlarmDecoder(TestCase):
     def tearDown(self):
         pass
 
-    ### Library events
+    # Library events
     def on_panic(self, sender, *args, **kwargs):
         self._panicked = kwargs['status']
 
@@ -137,7 +135,7 @@ class TestAlarmDecoder(TestCase):
     def on_zone_restore(self, sender, *args, **kwargs):
         self._zone_restored = kwargs['zone']
 
-    ### Tests
+    # Tests
     def test_open(self):
         self._decoder.open()
         self._device.open.assert_called()

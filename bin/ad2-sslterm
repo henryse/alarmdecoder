@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 
+import select
+import sys
+import termios
+import tty
+
 import alarmdecoder
-import sys, select
-import termios, tty
 
 
 def main():

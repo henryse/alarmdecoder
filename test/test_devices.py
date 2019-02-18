@@ -1,5 +1,5 @@
 from unittest import TestCase
-from mock import Mock, MagicMock, patch
+from unittest.mock import Mock, patch
 from serial import Serial, SerialException
 import sys
 import socket

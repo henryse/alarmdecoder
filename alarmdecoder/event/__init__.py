@@ -1,1 +1,1 @@
-__all__ = ['Event']
+__all__ = ['event']

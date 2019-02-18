@@ -601,8 +601,8 @@
       return escape ? esc.text(cur || "").html() : cur;
     }
 
-    return template.replace(/<([%#])([\w\.]*)\1>/g, function() {
-      return handle(arguments[2], arguments[1] == '%' ? true : false);
+    return template.replace(/<([%#])([\w.]*)\1>/g, function() {
+      return handle(arguments[2], arguments[1] === '%');
     });
   }
 

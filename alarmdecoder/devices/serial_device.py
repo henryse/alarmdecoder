@@ -156,10 +156,6 @@ class SerialDevice(Device):
         :raises: py:class:`~alarmdecoder.util.CommError`
         """
         try:
-            # Hack to support unicode under Python 2.x
-            if isinstance(data, str) or (sys.version_info < (3,) and isinstance(data, unicode)):
-                data = data.encode('utf-8')
-
             self._device.write(data)
 
         except serial.SerialTimeoutException:

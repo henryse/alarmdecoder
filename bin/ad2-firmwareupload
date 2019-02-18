@@ -5,6 +5,7 @@ import sys, time
 import traceback
 import alarmdecoder
 
+
 def handle_firmware(stage, **kwargs):
     if stage == alarmdecoder.util.Firmware.STAGE_START:
         handle_firmware.wait_tick = 0
@@ -17,7 +18,8 @@ def handle_firmware(stage, **kwargs):
         sys.stdout.write('.')
         sys.stdout.flush()
     elif stage == alarmdecoder.util.Firmware.STAGE_BOOT:
-        if handle_firmware.wait_tick > 0: print("")
+        if handle_firmware.wait_tick > 0:
+            print("")
         print("Rebooting device..")
     elif stage == alarmdecoder.util.Firmware.STAGE_LOAD:
         print('Waiting for boot loader..')
@@ -37,9 +39,8 @@ def handle_firmware(stage, **kwargs):
     elif stage == alarmdecoder.util.Firmware.STAGE_DEBUG:
         print("\r\nDBG: {0}".format(kwargs.get("data", "")))
 
+
 def main():
-    device = '/dev/ttyUSB0'
-    firmware = None
     baudrate = 115200
 
     if len(sys.argv) < 3:
@@ -77,6 +78,7 @@ def main():
     finally:
         if dev is not None:
             dev.close()
+
 
 if __name__ == "__main__":
     main()

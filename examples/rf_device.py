@@ -40,7 +40,7 @@ def handle_rfx(sender, message):
     Handles RF message events from the AlarmDecoder.
     """
     # Check for our target serial number and loop
-    if message.serial_number == RF_DEVICE_SERIAL_NUMBER and message.loop[0] == True:
+    if message.serial_number == RF_DEVICE_SERIAL_NUMBER and message.loop[0] is True:
         print(message.serial_number, 'triggered loop #1')
 
 
