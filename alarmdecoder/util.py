@@ -150,11 +150,14 @@ class Firmware(object):
 
         return response
 
+    # noinspection PyUnusedLocal
     @staticmethod
     def upload(device, file_path, progress_callback=None, debug=False):
         """
         Uploads firmware to an `AlarmDecoder`_ device.
 
+        :param debug: debug info
+        :param device:
         :param file_path: firmware file path
         :type file_path: string
         :param progress_callback: callback function used to report progress
@@ -254,7 +257,7 @@ class Firmware(object):
 
                     # Upload firmware
                     elif stage == Firmware.STAGE_UPLOADING:
-                        if len(write_queue) > 0 and got_response == True:
+                        if len(write_queue) > 0 and got_response is True:
                             got_response = False
                             device.write(write_queue.popleft())
 

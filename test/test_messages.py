@@ -13,7 +13,7 @@ class TestMessages(TestCase):
     def tearDown(self):
         pass
 
-    ### Tests
+    # Tests
     def test_message_parse(self):
         msg = Message('[00000000000000000A--],001,[f707000600e5800c0c020000],"FAULT 1                         "')
 

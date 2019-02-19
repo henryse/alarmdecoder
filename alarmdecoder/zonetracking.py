@@ -215,10 +215,12 @@ class Zonetracker(object):
 
             self._clear_expired_zones()
 
-    def expander_to_zone(self, address, channel, panel_type=ADEMCO):
+    @staticmethod
+    def expander_to_zone(address, channel, panel_type=ADEMCO):
         """
         Convert an address and channel into a zone number.
 
+        :param panel_type:
         :param address: expander address
         :type address: int
         :param channel: channel
@@ -325,7 +327,7 @@ class Zonetracker(object):
         :param status: zone status
         :type status: int
         """
-        if not zone in self._zones:
+        if zone not in self._zones:
             self._zones[zone] = Zone(zone=zone, name=name, status=None, expander=expander)
 
         self._update_zone(zone, status=status)
@@ -341,7 +343,7 @@ class Zonetracker(object):
 
         :raises: IndexError
         """
-        if not zone in self._zones:
+        if zone not in self._zones:
             raise IndexError('Zone does not exist and cannot be updated: %d', zone)
 
         old_status = self._zones[zone].status

@@ -144,7 +144,8 @@ class LRRSystem(object):
         # TODO: Log this somewhere useful.
         pass
 
-    def _get_event_status(self, message):
+    @staticmethod
+    def _get_event_status(message):
         """
         Retrieves the boolean status of an LRR message.
 

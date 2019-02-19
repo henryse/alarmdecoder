@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 
 import os
-import sys, time
+import sys
+import time
 import traceback
+
 import alarmdecoder
 
 

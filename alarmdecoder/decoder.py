@@ -932,7 +932,7 @@ class AlarmDecoder(object):
         return self._fire_status
 
     def update_panic_status(self, status=None):
-        self._update_panic_status(self, status)
+        self._update_panic_status(status)
 
     def _update_panic_status(self, status=None):
         """

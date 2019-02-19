@@ -48,7 +48,7 @@ class SocketDevice(Device):
 
         :returns: interface used to connect to the device
         """
-        return (self._host, self._port)
+        return self._host, self._port
 
     @interface.setter
     def interface(self, value):
@@ -371,7 +371,7 @@ class SocketDevice(Device):
         """
         try:
             self._device.setblocking(0)
-            while(self._device.recv(1)):
+            while self._device.recv(1):
                 pass
         except socket.error as err:
             pass
@@ -418,7 +418,9 @@ class SocketDevice(Device):
         except SSL.Error as err:
             raise CommError('Error setting up SSL connection.', err)
 
-    def _verify_ssl_callback(self, connection, x509, errnum, errdepth, ok):
+    # noinspection PyUnusedLocal
+    @staticmethod
+    def _verify_ssl_callback(connection, x509, errnum, errdepth, ok):
         """
         SSL verification callback.
         """

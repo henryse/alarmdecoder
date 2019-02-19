@@ -100,7 +100,7 @@ class Message(BaseMessage):
 
         header, self.bitfield, self.numeric_code, self.panel_data, alpha = match.group(1, 2, 3, 4, 5)
 
-        is_bit_set = lambda bit: not self.bitfield[bit] == "0"
+        def is_bit_set(bit): return not self.bitfield[bit] == "0"
 
         self.ready = is_bit_set(1)
         self.armed_away = is_bit_set(2)

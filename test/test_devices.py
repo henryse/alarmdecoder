@@ -38,7 +38,7 @@ class TestSerialDevice(TestCase):
     def tearDown(self):
         self._device.close()
 
-    ### Tests
+    # Tests
     def test_open(self):
         self._device.interface = '/dev/ttyS0'
 
@@ -68,14 +68,14 @@ class TestSerialDevice(TestCase):
         self._device.open(no_reader_thread=True)
 
         with patch.object(self._device._device, 'write') as mock:
-            self._device.write(b'test')
+            self._device.write('test')
 
             mock.assert_called_with(b'test')
 
     def test_write_exception(self):
         with patch.object(self._device._device, 'write', side_effect=SerialException):
             with self.assertRaises(CommError):
-                self._device.write(b'test')
+                self._device.write('test')
 
     def test_read(self):
         self._device.interface = '/dev/ttyS0'
@@ -139,7 +139,7 @@ class TestSocketDevice(TestCase):
     def tearDown(self):
         self._device.close()
 
-    ### Tests
+    # Tests
     def test_open(self):
         with patch.object(socket.socket, '__init__', return_value=None):
             with patch.object(socket.socket, 'connect', return_value=None) as mock:
@@ -158,18 +158,18 @@ class TestSocketDevice(TestCase):
                 self._device.open(no_reader_thread=True)
 
             with patch.object(socket.socket, 'send') as mock:
-                self._device.write(b'test')
+                self._device.write('test')
 
             mock.assert_called_with(b'test')
 
     def test_write_exception(self):
         side_effects = [socket.error]
-        if (have_openssl):
+        if have_openssl:
             side_effects.append(SSL.Error)
 
         with patch.object(self._device._device, 'send', side_effect=side_effects):
             with self.assertRaises(CommError):
-                self._device.write(b'test')
+                self._device.write('test')
 
     def test_read(self):
         with patch.object(socket.socket, '__init__', return_value=None):
@@ -302,14 +302,14 @@ if have_pyftdi:
         def tearDown(self):
             self._device.close()
 
-        ### Library events
+        # Library events
         def attached_event(self, sender, *args, **kwargs):
             self._attached = True
 
         def detached_event(self, sender, *args, **kwargs):
             self._detached = True
 
-        ### Tests
+        # Tests
         def test_find_default_param(self):
             with patch.object(Ftdi, 'find_all', return_value=[(0, 0, 'AD2', 1, 'AD2')]):
                 device = USBDevice.find()
@@ -392,14 +392,14 @@ if have_pyftdi:
             self._device.open(no_reader_thread=True)
 
             with patch.object(self._device._device, 'write_data') as mock:
-                self._device.write(b'test')
+                self._device.write('test')
 
                 mock.assert_called_with(b'test')
 
         def test_write_exception(self):
             with patch.object(self._device._device, 'write_data', side_effect=FtdiError):
                 with self.assertRaises(CommError):
-                    self._device.write(b'test')
+                    self._device.write('test')
 
         def test_read(self):
             self._device.interface = 'AD2USB'
@@ -426,7 +426,7 @@ if have_pyftdi:
                 except StopIteration:
                     pass
 
-                self.assertEquals(ret, b"testing")
+                self.assertEquals(ret, "testing")
 
         def test_read_line_timeout(self):
             with patch.object(self._device._device, 'read_data', return_value='a') as mock:

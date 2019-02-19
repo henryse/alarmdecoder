@@ -48,6 +48,7 @@ def get_event_source(prefix):
     return source
 
 
+# noinspection PyPep8Naming
 class LRR_EVENT_TYPE:
     """
     Base LRR event types
@@ -59,6 +60,7 @@ class LRR_EVENT_TYPE:
     UNKNOWN = 5
 
 
+# noinspection PyPep8Naming
 class LRR_EVENT_STATUS:
     """
     LRR event status codes
@@ -67,6 +69,7 @@ class LRR_EVENT_STATUS:
     RESTORE = 3
 
 
+# noinspection PyPep8Naming
 class LRR_CID_EVENT:
     """
     ContactID event codes
@@ -387,6 +390,7 @@ class LRR_CID_EVENT:
     OTHER_NO_READ_LOG = 0x999
 
 
+# noinspection PyPep8Naming
 class LRR_DSC_EVENT:
     """
     DSC event codes
@@ -401,6 +405,7 @@ class LRR_DSC_EVENT:
     REPORT_DSC_USER_LOG_EVENT = 0x800
 
 
+# noinspection PyPep8Naming
 class LRR_ADEMCO_EVENT:
     """
     ADEMCO event codes
@@ -408,6 +413,7 @@ class LRR_ADEMCO_EVENT:
     pass
 
 
+# noinspection PyPep8Naming
 class LRR_ALARMDECODER_EVENT:
     """
     AlarmDecoder event codes
@@ -416,6 +422,7 @@ class LRR_ALARMDECODER_EVENT:
     CUSTOM_PROG_KEY = 0x1
 
 
+# noinspection PyPep8Naming
 class LRR_UNKNOWN_EVENT:
     """
     Unknown event codes.  Realistically there shouldn't ever be anything here.
